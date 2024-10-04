@@ -132,6 +132,18 @@
                             <p class="text-lg italic">"--comment"</p>
                             <p class="mt-4 font-semibold">-  --Nama Sekolah</p>
                         </div>
+                         <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
+                            <p class="text-lg italic">"--comment"</p>
+                            <p class="mt-4 font-semibold">-  --Nama Sekolah</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
+                            <p class="text-lg italic">"--comment"</p>
+                            <p class="mt-4 font-semibold">-  --Nama Sekolah</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
+                            <p class="text-lg italic">"--comment"</p>
+                            <p class="mt-4 font-semibold">-  --Nama Sekolah</p>
+                        </div>
                     </div>
                 </div>
             </section>
