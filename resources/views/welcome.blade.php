@@ -3,209 +3,145 @@
         <div class="relative isolate bg-gray-100 text-gray-800">
 
             <!-- Carousel Section -->
-            <section id="home" class="relative w-full h-screen overflow-hidden">
-        <div class="carousel-wrapper w-full h-full flex transition-transform duration-500" id="carousel">
-            <!-- Carousel items -->
+           <section id="home" class="relative w-full h-screen overflow-hidden">
+    <div class="carousel-wrapper w-full h-full flex transition-transform duration-500" id="carousel">
+        <!-- Carousel items -->
+        @foreach($cmsData->carousel_image as $carouselImage)
             <div class="carousel-item w-full h-full flex-shrink-0 relative">
-                <img class="w-full h-full object-cover" src="https://via.placeholder.com/1200x800?text=Event+1" alt="Event 1">
+                <img class="w-full h-full object-cover" src="{{ $carouselImage['route'] }}" alt="https://via.placeholder.com/1200x800?text=404">
             </div>
-            <div class="carousel-item w-full h-full flex-shrink-0 relative">
-                <img class="w-full h-full object-cover" src="https://via.placeholder.com/1200x800?text=Event+2" alt="Event 2">
-            </div>
-            <div class="carousel-item w-full h-full flex-shrink-0 relative">
-                <img class="w-full h-full object-cover" src="https://via.placeholder.com/1200x800?text=Event+3" alt="Event 3">
-            </div>
-        </div>
-    </section>
+        @endforeach
+    </div>
+</section>
 
-            <!-- Profile and Daftar Section -->
-       <section class="mt-12 py-12 px-6 lg:px-16">
-    <div class="flex flex-col items-center">
-        <!-- H2 at the top -->
-        <h2 class="text-md font-semibold mb-4 text-center text-gray-500">Kehadiranku – Presensi Online Siswa hadir sebagai solusi presensi dan absensi siswa yang praktis, terjangkau, efisien, transparan, serta dapat dipertanggungjawabkan. Dengan Kehadiranku, presensi siswa dapat dilakukan dengan mudah hanya melalui smartphone Bapak/Ibu Guru.</h2>
 
-        <!-- Image below the H2 -->
-        <img src="https://via.placeholder.com/1200x800?text=Event+1" alt="Your Image" class="mb-6 rounded-lg" />
-
-        <div class="w-full flex justify-center rounded-lg p-4">
+            <!-- Profile Section -->
+    <section id="profile" class="mt-12 py-32 px-6 lg:px-16">
+        <div class="flex flex-col items-center">
+            <h2 class="text-md font-semibold mb-4 text-center text-gray-500">{{ $cmsData->profile_title ?? 'Profile' }}</h2>
+            <img src="{{ $cmsData->profile_image ?? asset('public/your-image-1.jpg') }}" alt="Profile Image" class="mb-6 rounded-lg">
+            <div class="w-full flex justify-center rounded-lg p-4">
     <a href="{{ route('register') }}"
        class="px-8 py-3 bg-green-500 text-white font-semibold rounded-full shadow-md hover:bg-green-600 transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50">
        Daftar
     </a>
 </div>
+        </div>
+    </section>
 
+    <!-- Features Section -->
+    <section id="fitur" class="mt-12 bg-gradient-to-r from-blue-500 to-blue-800 text-white py-16 px-6 lg:px-16">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-extrabold pb-2">{{ $cmsData->features_section_title ?? 'Our Features' }}</h2>
+            <p class="text-xl font-bold">{{ $cmsData->features_description ?? 'Apa saja yang Anda dapat saat menggunakan layanan Kehadiranku – Presensi Online Siswa' }}</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+              @foreach($cmsData->features as $feature)
+    <div class="p-6 bg-white text-gray-800 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
+<i class="fas fa-bolt text-blue-600 text-4xl"></i>
+    <h3 class="text-xl font-semibold mt-4">{{ $feature['name'] }}</h3>
+        <p class="mt-2">{{ $feature['description'] }}</p>
     </div>
-</section>
+@endforeach
 
 
-
-
-
-            <!-- Fitur Section -->
-            <section id="fitur" class="mt-12 bg-gradient-to-r from-blue-500 to-blue-800 text-white py-16 px-6 lg:px-16">
-                <div class="container mx-auto text-center">
-                    <h2 class="text-3xl font-extrabold pb-2">Fitur Kehadiranku</h2>
-                    <p class="text-xl font-bold">Apa saja yang Anda dapat saat menggunakan layanan Kehadiranku – Presensi Online Siswa</p>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                        <div class="p-6 bg-white text-gray-800 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-                            <i class="fas fa-bolt text-blue-600 text-4xl"></i>
-                            <h3 class="text-xl font-semibold mt-4">--nama fitur</h3>
-                            <p class="mt-2">--deskripsi fitur</p>
-                        </div>
-                        <div class="p-6 bg-white text-gray-800 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-                            <i class="fas fa-shield-alt text-blue-600 text-4xl"></i>
-                            <h3 class="text-xl font-semibold mt-4">--nama fitur</h3>
-                            <p class="mt-2">--deskripsi fitur</p>
-                        </div>
-                        <div class="p-6 bg-white text-gray-800 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-                            <i class="fas fa-globe text-blue-600 text-4xl"></i>
-                            <h3 class="text-xl font-semibold mt-4">---nama fitur</h3>
-                            <p class="mt-2">--deskripsi fitur</p>
-                        </div>
-                         <div class="p-6 bg-white text-gray-800 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-                            <i class="fas fa-bolt text-blue-600 text-4xl"></i>
-                            <h3 class="text-xl font-semibold mt-4">--nama fitur</h3>
-                            <p class="mt-2">--deskripsi fitur</p>
-                        </div>
-                        <div class="p-6 bg-white text-gray-800 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-                            <i class="fas fa-shield-alt text-blue-600 text-4xl"></i>
-                            <h3 class="text-xl font-semibold mt-4">--nama fitur</h3>
-                            <p class="mt-2">--deskripsi fitur</p>
-                        </div>
-                        <div class="p-6 bg-white text-gray-800 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-                            <i class="fas fa-globe text-blue-600 text-4xl"></i>
-                            <h3 class="text-xl font-semibold mt-4">---nama fitur</h3>
-                            <p class="mt-2">--deskripsi fitur</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Video Pengenalan Aplikasi Section -->
-          <section id="video" class="mt-12 py-32 px-6 lg:px-16">
-    <div class="container mx-auto">
-        <h2 class="text-center text-3xl font-extrabold mb-4">Video Pengenalan</h2>
-        <p class="text-center text-xl font-bold mb-20">
-            Kenali beberapa fitur unggulan dari 3 aplikasi yang kami sediakan untuk sekolah
-        </p>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-            <!-- First Video -->
-            <div class="rounded-lg overflow-hidden text-gray-400">
-                <p class="text-center text-lg font-semibold mb-2">Fitur Aplikasi 1</p>
-                <iframe class="w-full h-64" src="https://www.youtube.com/embed/1-vsV_g8N6g?si=g8-YiyV1oeebbt9b" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-
-            <!-- Second Video -->
-            <div class="rounded-lg overflow-hidden text-gray-400">
-                <p class="text-center text-lg font-semibold mb-2">Fitur Aplikasi 2</p>
-                <iframe class="w-full h-64" src="https://www.youtube.com/embed/jbGCow_lWVI?si=sE_bWCobsi8yLzxc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-
-            <!-- Third Video (Centered if odd) -->
-            <div class="rounded-lg overflow-hidden lg:col-span-2 text-gray-400">
-                <p class="text-center text-lg font-semibold mb-2">Fitur Aplikasi 3</p>
-                <iframe class="w-full h-64 lg:w-1/2 mx-auto" src="https://www.youtube.com/embed/YhZ8IKy5pe0?si=mm8wzzUmgZ6V-QjG" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video" class="mt-12 py-32 px-6 lg:px-16">
+        <div class="container mx-auto">
+            <h2 class="text-center text-3xl font-extrabold mb-4">{{ $cmsData->video_section_title ?? 'Video Pengenalan' }}</h2>
+            <p class="text-center text-xl font-bold mb-20">{{ $cmsData->video_section_description ?? 'Kenali beberapa fitur unggulan dari 3 aplikasi yang kami sediakan untuk sekolah' }}</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+               @foreach($cmsData->videos as $video)
+    <div class="rounded-lg overflow-hidden text-gray-400">
+        <p class="text-center text-lg font-semibold mb-2">{{ $video['title'] }}</p>
+        <iframe class="w-full h-64 rounded-t-lg" src="{{ $video['url'] }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
-</section>
+@endforeach
 
 
-
-
-
-            <!-- Pengguna Aplikasi Section -->
-            <section id="pengguna" class="mt-12 py-32 px-6 lg:px-16">
-                <div class="container mx-auto">
-                    <h2 class="text-center text-6xl font-extrabold pb-4">Pengguna Kehadiranku</h2>
-                    <p class="text-center text-xl font-bold">Layanan Presensi Online Siswa telah digunakan oleh berbagai sekolah di seluruh indonesia</p>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                        <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-                            <p class="text-lg italic">"--comment"</p>
-                            <p class="mt-4 font-semibold">-  --Nama Sekolah</p>
-                        </div>
-                        <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-                            <p class="text-lg italic">"--comment"</p>
-                            <p class="mt-4 font-semibold">-  --Nama Sekolah</p>
-                        </div>
-                        <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-                            <p class="text-lg italic">"--comment"</p>
-                            <p class="mt-4 font-semibold">-  --Nama Sekolah</p>
-                        </div>
-                         <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-                            <p class="text-lg italic">"--comment"</p>
-                            <p class="mt-4 font-semibold">-  --Nama Sekolah</p>
-                        </div>
-                        <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-                            <p class="text-lg italic">"--comment"</p>
-                            <p class="mt-4 font-semibold">-  --Nama Sekolah</p>
-                        </div>
-                        <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-                            <p class="text-lg italic">"--comment"</p>
-                            <p class="mt-4 font-semibold">-  --Nama Sekolah</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Biaya Aplikasi Section -->
-           <!-- Biaya Aplikasi Section -->
-<section id="biaya" class="mt-12 py-16 px-6 lg:px-16">
-    <div class="container mx-auto text-center">
-        <h2 class="text-3xl font-extrabold pb-4">Biaya Langganan</h2>
-        <p class="text-center text-xl font-bold">Nikmati semua fitur unggulan PIESA Presensi Online Siswa dengan biaya yang sangat terjangkau</p>
-        <div class="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-6 mt-12">
-            <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
-                <h3 class="text-xl font-semibold">Paket Basic</h3>
-                <p class="mt-2 text-2xl font-extrabold">Rp 199.000</p>
-                <p class="mt-4">Termasuk fitur dasar untuk absensi sekolah.</p>
-                <a href="#" class="mt-6 inline-block bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700">Mulai Sekarang</a>
-            </div>
-            <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
-                <h3 class="text-xl font-semibold">Paket Pro</h3>
-                <p class="mt-2 text-2xl font-extrabold">Rp 499.000</p>
-                <p class="mt-4">Termasuk fitur lanjutan untuk mengurus sekolah.</p>
-                <a href="#" class="mt-6 inline-block bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700">Mulai Sekarang</a>
             </div>
         </div>
+    </section>
+
+    <!-- User Testimonials Section -->
+                <section id="pengguna" class="mt-12 py-32 px-6 lg:px-16">
+        <div class="container mx-auto">
+            <h2 class="text-center text-5xl font-extrabold mb-4">{{ $cmsData->testimonials_section_title ?? 'User Testimonials' }}</h2>
+                    <p class="text-center text-xl font-bold">{{ $cmsData->testimonials_section_description ?? 'Layanan Presensi Online Siswa telah digunakan oleh berbagai sekolah di seluruh indonesia' }}</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                @foreach($cmsData->userTestimonials as $testimonial)
+    <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
+        <p class="text-gray-600">"{{ $testimonial['comment'] }}"</p>
+        <p class="text-right font-semibold mt-4">- {{ $testimonial['name'] }}, {{ $testimonial['school'] }}</p>
     </div>
-</section>
+@endforeach
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="biaya" class="mt-12 py-16 px-6 lg:px-16">
+
+        <div class="container mx-auto text-center">
+            <h2 class="text-center text-3xl font-extrabold mb-4">{{ $cmsData->pricing_section_title ?? 'Pricing Plans' }}</h2>
+            <p class="text-center text-xl mb-20">{{ $cmsData->pricing_section_description ?? 'Choose a plan that suits your needs.' }}</p>
+            <!-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8"> -->
 
 
-            <!-- Contact Us Section -->
-<section id="contact" class="mt-12 bg-white py-12 text-gray-800">
-    <div class="container mx-auto text-center">
-        <!-- Title -->
-        <h2 class="text-6xl font-extrabold mb-4">Contact Us</h2>
-        <p class="text-lg mb-8">Kenali lebih jauh tentang PIESA Presensi Online Siswa dengan menghubungi kontak kami</p>
+            <div class="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-6 mt-12">
 
-        <!-- Contact Information -->
+               @foreach($cmsData->pricingPlans as $plan)
+    <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
+        <h3 class="text-xl font-bold mb-2">{{ $plan['name'] }}</h3>
+        <p class="mt-2 text-2xl font-extrabold">{{ $plan['price'] }}</p>
+        <p class="text-gray-600 mt-4">{{ $plan['description'] }}</p>
+
+        @if(isset($plan['id']))
+            <a href="{{ route('pricing.detail', $plan['id']) }}" class="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded">Learn More</a>
+        @endif
+    </div>
+@endforeach
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact" class="mt-12 bg-white py-12 text-gray-800">
+        <div class="container mx-auto text-center">
+            <h2 class="text-center text-6xl font-extrabold mb-4">{{ $cmsData->contact_section_title ?? 'Contact Us' }}</h2>
+            <p class="text-center text-lg mb-8">{{ $cmsData->contact_section_description ?? 'Get in touch with us for any inquiries.' }}</p>
+             <!-- Contact Information -->
         <div class="mb-8">
             <div class="flex justify-center space-x-6">
                <div class="flex justify-center space-x-6">
     <div class="flex space-x-2">
         <p class="font-semibold">Telp:</p>
-        <p class="text-gray-600">--Nomor Telepon</p>
+        <p class="text-gray-600">{{ $cmsData->no_telp}}</p>
     </div>
 </div>
 <div class="flex justify-center space-x-6">
     <div class="flex space-x-2">
         <p class="font-semibold">WA:</p>
-        <p class="text-gray-600">--Nomor Telepon</p>
+        <p class="text-gray-600">{{ $cmsData->no_wa}}</p>
     </div>
 </div>
-
             </div>
         </div>
 
         <!-- Office Information -->
         <div class="mb-8">
             <p class="font-bold">Technical Support Office</p>
-            <p class="text-gray-600">--Alamat Kantor</p>
+            <p class="text-gray-600">{{ $cmsData->alamat_1}}</p>
         </div>
         <div class="mb-8">
             <p class="font-bold">Development Office</p>
-            <p class="text-gray-600">--Alamat Kantor</p>
+            <p class="text-gray-600">{{ $cmsData->alamat_2}}</p>
         </div>
 
         <!-- Social Media Links -->
