@@ -5,19 +5,19 @@
             <!-- Contact Information -->
             <div class="mb-8 md:mb-0">
                 <h4 class="text-lg font-semibold text-white mb-4">Contact Us</h4>
-                <p class="text-gray-400">--Alamat Kantor</p>
-                <p class="text-gray-400">--Nomor Telepon --nama</p>
-                <p class="text-gray-400">--Nomor Telepon (WhatsApp)</p>
+                <p class="text-gray-400">{{ $cmsData->alamat_1}}</p>
+                <p class="text-gray-400 pt-0.5">{{ $cmsData->no_telp}}</p>
+                <p class="text-gray-400 pt-0,5">{{ $cmsData->no_wa}}</p>
             </div>
 
             <!-- Quick Links -->
             <div class="mb-8 md:mb-0">
                 <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
                 <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-white">Home</a></li>
-                    <li><a href="#" class="hover:text-white">About Us</a></li>
-                    <li><a href="#" class="hover:text-white">Services</a></li>
-                    <li><a href="#" class="hover:text-white">Contact</a></li>
+                    <li><a href="/#home" class="hover:text-white">Home</a></li>
+                    <li><a href="/#video" class="hover:text-white">About Us</a></li>
+                    <li><a href="/#biaya" class="hover:text-white">Services</a></li>
+                    <li><a href="/#" class="hover:text-white">Contact</a></li>
                 </ul>
             </div>
 
