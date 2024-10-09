@@ -14,13 +14,16 @@
 
             <!-- Right side: Page Sections Links -->
             <div class="hidden space-x-8 sm:flex items-center">
-                <a href="#home" class="text-gray-800 hover:text-blue-600 transition-colors">Home</a>
-                <a href="#fitur" class="text-gray-800 hover:text-blue-600 transition-colors">Fitur</a>
-                <a href="#video" class="text-gray-800 hover:text-blue-600 transition-colors">Video</a>
-                <a href="#pengguna" class="text-gray-800 hover:text-blue-600 transition-colors">Pengguna</a>
-                <a href="#biaya" class="text-gray-800 hover:text-blue-600 transition-colors">Biaya</a>
-                <a href="#contact" class="text-gray-800 hover:text-blue-600 transition-colors">Contact</a>
-                <a href="#daftar" class="text-blue-600 font-bold hover:text-blue-800 transition-colors">Daftar</a>
+                <a href="/#home" class="text-gray-800 hover:text-blue-600 transition-colors">Home</a>
+                <a href="/#fitur" class="text-gray-800 hover:text-blue-600 transition-colors">Fitur</a>
+                <a href="/#video" class="text-gray-800 hover:text-blue-600 transition-colors">Video</a>
+                <a href="/#pengguna" class="text-gray-800 hover:text-blue-600 transition-colors">Pengguna</a>
+                <a href="/#biaya" class="text-gray-800 hover:text-blue-600 transition-colors">Biaya</a>
+                <a href="/#contact" class="text-gray-800 hover:text-blue-600 transition-colors">Contact</a>
+                <a href="/#daftar" class="text-blue-600 font-bold hover:text-blue-800 transition-colors">Daftar</a>
+                @auth
+                <a href="{{ route('cms.edit') }}" class="text-gray-800 hover:text-blue-600 transition-colors">CMS Dashboard</a>
+@endauth
             </div>
 
             <!-- Hamburger (Mobile Menu Button) -->
