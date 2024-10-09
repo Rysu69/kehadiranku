@@ -2,10 +2,21 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CmsController;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/cms', [CmsController::class, 'index'])->name('cms.index');
+    Route::get('/cms/edit', [CmsController::class, 'edit'])->name('cms.edit');
+    Route::post('/cms/update', [CmsController::class, 'update'])->name('cms.update');
 });
+
+
+// Example route definition for a contact page
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
+
+Route::get('/', [CmsController::class, 'index'])->name('welcome');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
