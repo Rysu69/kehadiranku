@@ -10,13 +10,8 @@ class CmsDataSeeder extends Seeder
     public function run()
     {
         CmsData::create([
-            'carousel_image' => json_encode([
-                ['name' => 'Feature 1', 'route' => 'https://via.placeholder.com/1200x800?text=Event+1'],
-                ['name' => 'Feature 2', 'route' => 'https://via.placeholder.com/1200x800?text=Event+2'],
-                ['name' => 'Feature 3', 'route' => 'https://via.placeholder.com/1200x800?text=Event+3'],
-            ]),
             'profile_title' => 'Kehadiranku – Presensi Online Siswa hadir sebagai solusi presensi dan absensi siswa yang praktis, terjangkau, efisien, transparan, serta dapat dipertanggungjawabkan. Dengan Kehadiranku, presensi siswa dapat dilakukan dengan mudah hanya melalui smartphone Bapak/Ibu Guru.',
-            'profile_image' => 'https://via.placeholder.com/1200x800?text=Event+1', // Update this path
+            'profile_image' => 'https://www.youtube.com/embed/', // Update this path
 
             'features_section_title' => 'Our Features',
             'features_description' => 'Apa saja yang Anda dapat saat menggunakan layanan Kehadiranku – Presensi Online Siswa',
@@ -60,6 +55,12 @@ class CmsDataSeeder extends Seeder
             'no_wa' => '082352623535525',
             'alamat_1' => 'bengkuring',
             'alamat_2' => 'bengkuring juga',
+            'socials' => json_encode([
+                ['icon' => 'fa-brands fa-youtube', 'url' => 'https://www.youtube.com/embed/video_id'],
+                ['icon' => 'fa-brands fa-youtube', 'url' => 'https://www.youtube.com/embed/video_id'],
+                ['icon' => 'fa-brands fa-youtube', 'url' => 'https://www.youtube.com/embed/video_id'],
+                // Add more socials
+            ]),
         ]);
     }
 }

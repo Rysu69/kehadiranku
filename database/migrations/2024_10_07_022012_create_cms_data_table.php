@@ -9,6 +9,17 @@ class CreateCmsDataTable extends Migration
     {
         Schema::create('cms_data', function (Blueprint $table) {
             $table->id();
+
+            $table->string('logo')->nullable(); // Column for the logo image path
+
+            $table->string('bg_color')->nullable();
+            $table->string('primary_color')->nullable();
+            $table->string('secondary_color')->nullable();
+            $table->string('light_color')->nullable();
+            $table->string('dark_color')->nullable();
+            $table->string('gradient_from')->nullable();
+            $table->string('gradient_to')->nullable();
+
             $table->json('carousel_image')->nullable(); // Store video links as JSON
 
             $table->string('profile_title', 500)->nullable();
@@ -36,6 +47,7 @@ class CreateCmsDataTable extends Migration
             $table->text('no_wa')->nullable();
             $table->text('alamat_1')->nullable();
             $table->text('alamat_2')->nullable();
+            $table->json('socials')->nullable();
 
             $table->timestamps();
         });

@@ -6,9 +6,17 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                    </a>
+                   @php
+    $cmsData = \App\Models\CmsData::first();
+@endphp
+
+<a href="{{ route('dashboard') }}">
+    @if ($cmsData && $cmsData->logo)
+        <img src="{{ asset('storage/' . $cmsData->logo) }}" alt="Application Logo" class="block h-9 w-auto">
+    @else
+        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+    @endif
+</a>
                 </div>
             </div>
 
@@ -22,7 +30,7 @@
                 <a href="/#contact" class="text-gray-800 hover:text-blue-600 transition-colors">Contact</a>
                 <a href="/#daftar" class="text-blue-600 font-bold hover:text-blue-800 transition-colors">Daftar</a>
                 @auth
-                <a href="{{ route('cms.edit') }}" class="text-gray-800 hover:text-blue-600 transition-colors">CMS Dashboard</a>
+                <a href="{{ route('cms.welcome') }}" class="text-gray-800 hover:text-blue-600 transition-colors">CMS Dashboard</a>
 @endauth
             </div>
 

@@ -10,6 +10,14 @@ class CmsData extends Model
     use HasFactory;
 
     protected $fillable = [
+        'logo',
+        'bg_color',
+        'primary_color',
+        'secondary_color',
+        'light_color',
+        'dark_color',
+        'gradient_from',
+        'gradient_to',
         'carousel_image',
         'profile_title',
         'features_description',
@@ -31,6 +39,7 @@ class CmsData extends Model
         'no_wa',
         'alamat_1',
         'alamat_2',
+        'socials',
     ];
 
     protected $casts = [
@@ -39,5 +48,6 @@ class CmsData extends Model
         'videos' => 'array',
         'userTestimonials' => 'array',
         'pricingPlans' => 'array',
+        'socials' => 'array',
     ];
 }

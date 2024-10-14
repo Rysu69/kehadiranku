@@ -1,36 +1,91 @@
     <x-app-layout>
-        <!-- Main content -->
-        <div class="relative isolate bg-gray-100 text-gray-800">
+        <style>
 
-            <!-- Carousel Section -->
-           <section id="home" class="relative w-full h-screen overflow-hidden">
+:root {
+    --bg-color: {{ $cmsData->bg_color ?? '#ffffff' }};
+    --primary-color: {{ $cmsData->primary_color ?? '#FFFFFF' }};
+    --secondary-color: {{ $cmsData->secondary_color ?? '#FFFFFF' }};
+    --light-color: {{ $cmsData->light_color ?? '#ffffff' }};
+    --dark-color: {{ $cmsData->dark_color ?? '#000000' }};
+    --gradient-from: {{ $cmsData->gradient_from?? '#3b82f6' }}; /* Default: blue-500 */
+    --gradient-to: {{ $cmsData->gradient_to  ?? '#1d4ed8' }}; /* Default: blue-800 */
+}
+
+.bg {
+    background-color: var(--bg-color);
+}
+
+.primary {
+    color: var(--primary-color);
+}
+
+.secondary {
+    color: var(--secondary-color);
+}
+
+.light {
+    color: var(--light-color);
+}
+
+.dark {
+    color: var(--dark-color);
+}
+
+.gradient-bg {
+    background: linear-gradient(to bottom right, var(--gradient-from), var(--gradient-to));
+}
+
+        </style>
+        <!-- Main content -->
+        <div class="relative isolate bg dark">
+
+           <!-- Carousel Section -->
+<section id="home" class="relative w-full h-screen overflow-hidden">
     <div class="carousel-wrapper w-full h-full flex transition-transform duration-500" id="carousel">
         <!-- Carousel items -->
-        @foreach($cmsData->carousel_image as $carouselImage)
+        @if(is_array($cmsData->carousel_image) && count($cmsData->carousel_image) > 0)
+  @foreach ($cmsData->carousel_image as $carouselImage)
+        <div class="carousel-item w-full h-full flex-shrink-0 relative">
+            <img class="w-full h-full object-cover" src="{{ asset('storage/' . $carouselImage) }}" alt="Carousel Image">
+        </div>
+    @endforeach
+        @else
             <div class="carousel-item w-full h-full flex-shrink-0 relative">
-                <img class="w-full h-full object-cover" src="{{ $carouselImage['route'] }}" alt="https://via.placeholder.com/1200x800?text=404">
+                <img class="w-full h-full object-cover" src="https://via.placeholder.com/1200x800?text=No+Image" alt="No Image Available">
             </div>
-        @endforeach
+        @endif
     </div>
 </section>
 
 
+
             <!-- Profile Section -->
-    <section id="profile" class="mt-12 py-32 px-6 lg:px-16">
-        <div class="flex flex-col items-center">
-            <h2 class="text-md font-semibold mb-4 text-center text-gray-500">{{ $cmsData->profile_title ?? 'Profile' }}</h2>
-            <img src="{{ $cmsData->profile_image ?? asset('public/your-image-1.jpg') }}" alt="Profile Image" class="mb-6 rounded-lg">
-            <div class="w-full flex justify-center rounded-lg p-4">
-    <a href="{{ route('register') }}"
-       class="px-8 py-3 bg-green-500 text-white font-semibold rounded-full shadow-md hover:bg-green-600 transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50">
-       Daftar
-    </a>
+<section id="profile" class="mt-12 py-32 px-6 lg:px-16">
+    <div class="flex flex-col items-center">
+        <h2 class="text-md font-semibold mb-4 text-center text-gray-500">{{ $cmsData->profile_title ?? 'Profile' }}</h2>
+
+        <!-- YouTube iframe -->
+        <div class="mb-6 w-full overflow-hidden relative" style="padding-top: 56.25%;"> <!-- 16:9 aspect ratio -->
+    <iframe class="absolute top-0 left-0 w-full h-full rounded-lg"
+            src="{{ $cmsData->profile_image }}"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
 </div>
+
+
+        <div class="w-full flex justify-center rounded-lg p-4">
+            <a href="{{ route('register') }}"
+               class="px-8 py-3 bg-green-500 text-white font-semibold rounded-full shadow-md hover:bg-green-600 transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50">
+               Daftar
+            </a>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- Features Section -->
-    <section id="fitur" class="mt-12 bg-gradient-to-r from-blue-500 to-blue-800 text-white py-16 px-6 lg:px-16">
+    <section id="fitur" class="mt-12 gradient-bg text-white py-16 px-6 lg:px-16">
         <div class="container mx-auto text-center">
             <h2 class="text-3xl font-extrabold pb-2">{{ $cmsData->features_section_title ?? 'Our Features' }}</h2>
             <p class="text-xl font-bold">{{ $cmsData->features_description ?? 'Apa saja yang Anda dapat saat menggunakan layanan Kehadiranku – Presensi Online Siswa' }}</p>
@@ -144,21 +199,16 @@
             <p class="text-gray-600">{{ $cmsData->alamat_2}}</p>
         </div>
 
-        <!-- Social Media Links -->
-        <div class="flex justify-center space-x-4 mt-8">
-            <a href="#" class="text-blue-600 hover:text-blue-700">
-                <i class="fab fa-facebook fa-2x"></i>
-            </a>
-            <a href="#" class="text-blue-400 hover:text-blue-500">
-                <i class="fab fa-twitter fa-2x"></i>
-            </a>
-            <a href="#" class="text-pink-500 hover:text-pink-600">
-                <i class="fab fa-instagram fa-2x"></i>
-            </a>
-            <a href="#" class="text-red-600 hover:text-red-700">
-                <i class="fab fa-youtube fa-2x"></i>
-            </a>
-        </div>
+<!-- Social Media Links -->
+ <div class="flex justify-center space-x-4 mt-8">
+@foreach($cmsData->socials as $social)
+        <a href="{{ $social['url'] }}" class=" hover:text-blue-700">
+            <i class="{{ $social['icon'] ?? 'fas fa-question-circle' }} fa-2x"></i>
+        </a>
+@endforeach
+</div>
+
+
     </div>
 </section>
 
@@ -168,6 +218,8 @@
         </div>
 
         <script>
+
+
         const carousel = document.getElementById('carousel');
         const items = carousel.children;
         const totalItems = items.length;
