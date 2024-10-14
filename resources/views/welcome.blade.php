@@ -62,7 +62,7 @@
             <!-- Profile Section -->
 <section id="profile" class="mt-12 py-32 px-6 lg:px-16">
     <div class="flex flex-col items-center">
-        <h2 class="text-md font-semibold mb-4 text-center text-gray-500">{{ $cmsData->profile_title ?? 'Profile' }}</h2>
+        <h2 class="text-md font-semibold mb-4 text-center primary">{{ $cmsData->profile_title ?? 'Profile' }}</h2>
 
         <!-- YouTube iframe -->
         <div class="mb-6 w-full overflow-hidden relative" style="padding-top: 56.25%;"> <!-- 16:9 aspect ratio -->
@@ -76,7 +76,7 @@
 
         <div class="w-full flex justify-center rounded-lg p-4">
             <a href="{{ route('register') }}"
-               class="px-8 py-3 bg-green-500 text-white font-semibold rounded-full shadow-md hover:bg-green-600 transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50">
+               class="px-8 py-3 bg-green-500 light font-semibold rounded-full shadow-md hover:bg-green-600 transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50">
                Daftar
             </a>
         </div>
@@ -85,16 +85,16 @@
 
 
     <!-- Features Section -->
-    <section id="fitur" class="mt-12 gradient-bg text-white py-16 px-6 lg:px-16">
+    <section id="fitur" class="mt-12 gradient-bg secondary py-16 px-6 lg:px-16">
         <div class="container mx-auto text-center">
-            <h2 class="text-3xl font-extrabold pb-2">{{ $cmsData->features_section_title ?? 'Our Features' }}</h2>
-            <p class="text-xl font-bold">{{ $cmsData->features_description ?? 'Apa saja yang Anda dapat saat menggunakan layanan Kehadiranku – Presensi Online Siswa' }}</p>
+            <h2 class="text-3xl font-extrabold pb-2 light">{{ $cmsData->features_section_title ?? 'Our Features' }}</h2>
+            <p class="text-xl font-bold light">{{ $cmsData->features_description ?? 'Apa saja yang Anda dapat saat menggunakan layanan Kehadiranku – Presensi Online Siswa' }}</p>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
               @foreach($cmsData->features as $feature)
-    <div class="p-6 bg-white text-gray-800 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
+    <div class="p-6 bg-white dark rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
 <i class="fas fa-bolt text-blue-600 text-4xl"></i>
-    <h3 class="text-xl font-semibold mt-4">{{ $feature['name'] }}</h3>
-        <p class="mt-2">{{ $feature['description'] }}</p>
+    <h3 class="text-xl dark font-semibold mt-4">{{ $feature['name'] }}</h3>
+        <p class="mt-2 dark">{{ $feature['description'] }}</p>
     </div>
 @endforeach
 
@@ -106,13 +106,13 @@
     <!-- Video Section -->
     <section id="video" class="mt-12 py-32 px-6 lg:px-16">
         <div class="container mx-auto">
-            <h2 class="text-center text-3xl font-extrabold mb-4">{{ $cmsData->video_section_title ?? 'Video Pengenalan' }}</h2>
-            <p class="text-center text-xl font-bold mb-20">{{ $cmsData->video_section_description ?? 'Kenali beberapa fitur unggulan dari 3 aplikasi yang kami sediakan untuk sekolah' }}</p>
+            <h2 class="text-center text-3xl font-extrabold mb-4 primary">{{ $cmsData->video_section_title ?? 'Video Pengenalan' }}</h2>
+            <p class="text-center text-xl font-bold mb-20 primary">{{ $cmsData->video_section_description ?? 'Kenali beberapa fitur unggulan dari 3 aplikasi yang kami sediakan untuk sekolah' }}</p>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                @foreach($cmsData->videos as $video)
-    <div class="rounded-lg overflow-hidden text-gray-400">
-        <p class="text-center text-lg font-semibold mb-2">{{ $video['title'] }}</p>
-        <iframe class="w-full h-64 rounded-t-lg" src="{{ $video['url'] }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="rounded-lg overflow-hidden secondary">
+        <p class="text-center text-lg font-semibold mb-2 primary">{{ $video['title'] }}</p>
+        <iframe class="w-full h-64 rounded-t-lg primary" src="{{ $video['url'] }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 @endforeach
 
@@ -124,13 +124,13 @@
     <!-- User Testimonials Section -->
                 <section id="pengguna" class="mt-12 py-32 px-6 lg:px-16">
         <div class="container mx-auto">
-            <h2 class="text-center text-5xl font-extrabold mb-4">{{ $cmsData->testimonials_section_title ?? 'User Testimonials' }}</h2>
-                    <p class="text-center text-xl font-bold">{{ $cmsData->testimonials_section_description ?? 'Layanan Presensi Online Siswa telah digunakan oleh berbagai sekolah di seluruh indonesia' }}</p>
+            <h2 class="text-center text-5xl font-extrabold mb-4 primary">{{ $cmsData->testimonials_section_title ?? 'User Testimonials' }}</h2>
+                    <p class="text-center text-xl font-bold primary">{{ $cmsData->testimonials_section_description ?? 'Layanan Presensi Online Siswa telah digunakan oleh berbagai sekolah di seluruh indonesia' }}</p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
                 @foreach($cmsData->userTestimonials as $testimonial)
     <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-        <p class="text-gray-600">"{{ $testimonial['comment'] }}"</p>
-        <p class="text-right font-semibold mt-4">- {{ $testimonial['name'] }}, {{ $testimonial['school'] }}</p>
+        <p class="secondary">"{{ $testimonial['comment'] }}"</p>
+        <p class="text-right font-semibold mt-4 primary">- {{ $testimonial['name'] }}, {{ $testimonial['school'] }}</p>
     </div>
 @endforeach
 
@@ -142,8 +142,8 @@
     <section id="biaya" class="mt-12 py-16 px-6 lg:px-16">
 
         <div class="container mx-auto text-center">
-            <h2 class="text-center text-3xl font-extrabold mb-4">{{ $cmsData->pricing_section_title ?? 'Pricing Plans' }}</h2>
-            <p class="text-center text-xl mb-20">{{ $cmsData->pricing_section_description ?? 'Choose a plan that suits your needs.' }}</p>
+            <h2 class="text-center text-3xl font-extrabold mb-4 primary">{{ $cmsData->pricing_section_title ?? 'Pricing Plans' }}</h2>
+            <p class="text-center text-xl mb-20 primary">{{ $cmsData->pricing_section_description ?? 'Choose a plan that suits your needs.' }}</p>
             <!-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8"> -->
 
 
@@ -151,13 +151,11 @@
 
                @foreach($cmsData->pricingPlans as $plan)
     <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
-        <h3 class="text-xl font-bold mb-2">{{ $plan['name'] }}</h3>
-        <p class="mt-2 text-2xl font-extrabold">{{ $plan['price'] }}</p>
-        <p class="text-gray-600 mt-4">{{ $plan['description'] }}</p>
+        <h3 class="text-xl font-bold mb-2 dark">{{ $plan['name'] }}</h3>
+        <p class="mt-2 text-2xl font-extrabold dark">{{ $plan['price'] }}</p>
+        <p class="secondary mt-4">{{ $plan['description'] }}</p>
 
-        @if(isset($plan['id']))
-            <a href="{{ route('pricing.detail', $plan['id']) }}" class="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded">Learn More</a>
-        @endif
+            <a href="#daftar" class="mt-4 inline-block bg-blue-600 light py-2 px-4 rounded-2xl">Daftar</a>
     </div>
 @endforeach
 
@@ -167,21 +165,21 @@
     </section>
 
     <!-- Contact Us Section -->
-    <section id="contact" class="mt-12 bg-white py-12 text-gray-800">
+    <section id="contact" class="mt-12 bg-white py-12 primary">
         <div class="container mx-auto text-center">
-            <h2 class="text-center text-6xl font-extrabold mb-4">{{ $cmsData->contact_section_title ?? 'Contact Us' }}</h2>
-            <p class="text-center text-lg mb-8">{{ $cmsData->contact_section_description ?? 'Get in touch with us for any inquiries.' }}</p>
+            <h2 class="text-center text-6xl font-extrabold mb-4 dark">{{ $cmsData->contact_section_title ?? 'Contact Us' }}</h2>
+            <p class="text-center text-lg mb-8 dark">{{ $cmsData->contact_section_description ?? 'Get in touch with us for any inquiries.' }}</p>
              <!-- Contact Information -->
         <div class="mb-8">
             <div class="flex justify-center space-x-6">
                <div class="flex justify-center space-x-6">
-    <div class="flex space-x-2">
+    <div class="flex space-x-2 dark">
         <p class="font-semibold">Telp:</p>
         <p class="text-gray-600">{{ $cmsData->no_telp}}</p>
     </div>
 </div>
 <div class="flex justify-center space-x-6">
-    <div class="flex space-x-2">
+    <div class="flex space-x-2 dark">
         <p class="font-semibold">WA:</p>
         <p class="text-gray-600">{{ $cmsData->no_wa}}</p>
     </div>
@@ -190,11 +188,11 @@
         </div>
 
         <!-- Office Information -->
-        <div class="mb-8">
+        <div class="mb-8 dark">
             <p class="font-bold">Technical Support Office</p>
             <p class="text-gray-600">{{ $cmsData->alamat_1}}</p>
         </div>
-        <div class="mb-8">
+        <div class="mb-8 dark">
             <p class="font-bold">Development Office</p>
             <p class="text-gray-600">{{ $cmsData->alamat_2}}</p>
         </div>

@@ -25,14 +25,15 @@
             <div>
                 <h4 class="text-lg font-semibold text-white mb-4">Follow Us</h4>
                 <div class="flex space-x-4">
-                    <a href="#" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="hover:text-white"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="hover:text-white"><i class="fab fa-youtube"></i></a>
+                    @foreach($cmsData->socials as $social)
+        <a href="{{ $social['url'] }}" class=" hover:text-blue-700">
+            <i class="{{ $social['icon'] ?? 'fas fa-question-circle' }}"></i>
+        </a>
+@endforeach
                 </div>
             </div>
         </div>
-
+</div>
         <!-- Bottom section -->
         <div class="border-t border-gray-700 -mb-10 mt-10 text-center">
             <p>&copy; {{ date('Y') }} Kehadiranku. All rights reserved.</p>

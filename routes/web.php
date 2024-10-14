@@ -49,15 +49,11 @@ Route::put('/contact', [CmsController::class, 'updateContactSection'])->name('cm
 });
 
 
-// Example route definition for a contact page
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
 
 Route::get('/', [CmsController::class, 'index'])->name('welcome');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('cms.welcome');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

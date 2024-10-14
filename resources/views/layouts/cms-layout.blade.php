@@ -50,6 +50,9 @@
             <li class="mb-4">
                 <a href="/cms/contact" class="block py-2 hover:bg-blue-600 rounded">Contact</a>
             </li>
+            <li class="mb-4">
+                <a href="/profile" class="block py-2 hover:bg-blue-600 rounded">Admin</a>
+            </li>
         </ul>
     </nav>
 
