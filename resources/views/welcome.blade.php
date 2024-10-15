@@ -85,7 +85,7 @@
 @else
     <div class="mb-6 w-full overflow-hidden relative" style="padding-top: 56.25%;">
         <iframe class="absolute top-0 left-0 w-full h-full rounded-lg"
-                src="https://via.placeholder.com/1200x675?text=No+Profile+Image"
+                src="https://www.youtube.com/embed/"
                 frameborder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
@@ -147,12 +147,9 @@
     </div>
 @endforeach
 @else
-    <div class="mb-6 w-full overflow-hidden relative" style="padding-top: 56.25%;">
-        <iframe class="absolute top-0 left-0 w-full h-full rounded-lg"
-                src="https://via.placeholder.com/1200x675?text=No+Profile+Image"
-                frameborder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
+<div class="rounded-lg overflow-hidden secondary">
+        <p class="text-center text-lg font-semibold mb-2 primary">not found</p>
+        <iframe class="w-full h-64 rounded-t-lg primary" src="https://www.youtube.com/embed/" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 @endif
 
