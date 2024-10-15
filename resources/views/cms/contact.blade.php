@@ -95,7 +95,6 @@ document.getElementById('add-social').addEventListener('click', function () {
             <input type="text" name="socials[${index}][icon]" placeholder="FontAwesome Icon" class="w-1/3 border-gray-300 rounded-lg mr-2">
             <input type="url" name="socials[${index}][url]" placeholder="Social Media URL" class="w-1/3 border-gray-300 rounded-lg mr-2">
 
-            <button type="button" class="px-4 py-2 bg-yellow-500 text-white rounded-lg mr-2" onclick="editSocial(${index})">Edit</button>
             <button type="button" class="px-4 py-2 bg-red-500 text-white rounded-lg" onclick="removeSocial(${index})">Delete</button>
         </div>
     `;

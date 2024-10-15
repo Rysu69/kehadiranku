@@ -201,11 +201,15 @@
 
 
             <div class="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-6 mt-12">
-@if ($cmsData && is_array($cmsData->pricingPlans) && count($cmsData->pricingPlans) > 0)
-               @foreach($cmsData->pricingPlans as $plan)
+                @php
+    // Decode the userTestimonials field if it's stored as a JSON string
+    $pricingPlans = is_string($cmsData->pricingPlans) ? json_decode($cmsData->pricingPlans, true) : $cmsData->pricingPlans;
+@endphp
+@if (is_array($pricingPlans) && count($pricingPlans) > 0)
+               @foreach($pricingPlans as $plan)
     <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
         <h3 class="text-xl font-bold mb-2 dark">{{ $plan['name'] }}</h3>
-        <p class="mt-2 text-2xl font-extrabold dark">{{ $plan['price'] }}</p>
+        <p class="mt-2 text-2xl font-extrabold dark">Rp {{ $plan['price'] }}</p>
         <p class="secondary mt-4">{{ $plan['description'] }}</p>
 
             <a href="#daftar" class="mt-4 inline-block bg-blue-600 light py-2 px-4 rounded-2xl">Daftar</a>
@@ -260,8 +264,12 @@
 
 <!-- Social Media Links -->
  <div class="flex justify-center space-x-4 mt-8">
-@if ($cmsData && is_array($cmsData->socials) && count($cmsData->socials) > 0)
-@foreach($cmsData->socials as $social)
+    @php
+    // Decode the userTestimonials field if it's stored as a JSON string
+    $socials = is_string($cmsData->socials) ? json_decode($cmsData->socials, true) : $cmsData->socials;
+@endphp
+@if (is_array($socials) && count($socials) > 0)
+               @foreach($socials as $social)
         <a href="{{ $social['url'] }}" class=" hover:text-blue-700">
             <i class="{{ $social['icon'] ?? 'fas fa-question-circle' }} fa-2x"></i>
         </a>

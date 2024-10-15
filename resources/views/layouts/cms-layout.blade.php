@@ -48,6 +48,9 @@
                 <a href="/cms/testimonials" class="block py-2 hover:bg-blue-600 rounded">Testimonials</a>
             </li>
             <li class="mb-4">
+                <a href="/cms/pricing" class="block py-2 hover:bg-blue-600 rounded">Pricing</a>
+            </li>
+            <li class="mb-4">
                 <a href="/cms/contact" class="block py-2 hover:bg-blue-600 rounded">Contact</a>
             </li>
             <li class="mb-4">
