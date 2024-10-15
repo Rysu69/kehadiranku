@@ -28,9 +28,9 @@
 
 @php
     // Decode the userTestimonials field if it's stored as a JSON string
-    $socials = is_string($cmsData->socials) ? json_decode($cmsData->socials, true) : $cmsData->socials;
+    //$socials = is_string($cmsData->socials) ? json_decode($cmsData->socials, true) : $cmsData->socials;
 @endphp
-@if (is_array($socials) && count($socials) > 0)
+@if (!empty($socials) && (is_array($socials) && count($socials) > 0))
                @foreach($socials as $social)
  <a href="{{ $social['url'] }}" class=" hover:text-blue-700">
             <i class="{{ $social['icon'] ?? 'fas fa-question-circle' }}"></i>

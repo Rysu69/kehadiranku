@@ -45,10 +45,10 @@
         <!-- Carousel items -->
 @php
     // Decode the features field if it's stored as a JSON string
-    $carousel_image = is_string($cmsData->carousel_image) ? json_decode($cmsData->carousel_image, true) : $cmsData->carousel_image;
+    //$carousel_image = is_string($cmsData->carousel_image) ? json_decode($cmsData->carousel_image, true) : $cmsData->carousel_image;
 @endphp
 
-@if ($cmsData && is_array($cmsData->carousel_image) && count($cmsData->carousel_image) > 0)
+@if (!empty($cmsData->carousel_image) && ($cmsData && is_array($cmsData->carousel_image) && count($cmsData->carousel_image) > 0))
     @foreach ($cmsData->carousel_image as $carouselImage)
         <div class="carousel-item w-full h-full flex-shrink-0 relative">
             <img class="w-full h-full object-cover" src="{{ asset('storage/' . $carouselImage) }}" alt="Carousel Image">
@@ -114,10 +114,10 @@
 
 @php
     // Decode the features field if it's stored as a JSON string
-    $features = is_string($cmsData->features) ? json_decode($cmsData->features, true) : $cmsData->features;
+    //$features = is_string($cmsData->features) ? json_decode($cmsData->features, true) : $cmsData->features;
 @endphp
 
-@if (is_array($features) && count($features) > 0)
+@if (!empty($features) && (is_array($features) && count($features) > 0))
     @foreach($features as $feature)
         <div class="p-6 bg-white dark rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
             <i class="{{ $feature['icon'] }} text-blue-600 text-4xl"></i>
@@ -143,10 +143,10 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
 @php
     // Decode the videos field if it's stored as a JSON string
-    $videos = is_string($cmsData->videos) ? json_decode($cmsData->videos, true) : $cmsData->videos;
+    //$videos = is_string($cmsData->videos) ? json_decode($cmsData->videos, true) : $cmsData->videos;
 @endphp
 
-@if (is_array($videos) && count($videos) > 0)
+@if (!empty($videos) && (is_array($videos) && count($videos) > 0))
     @foreach($videos as $video)
         <div class="rounded-lg overflow-hidden secondary">
             <p class="text-center text-lg font-semibold mb-2 primary">{{ $video['title'] }}</p>
@@ -171,10 +171,10 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
 @php
     // Decode the userTestimonials field if it's stored as a JSON string
-    $userTestimonials = is_string($cmsData->userTestimonials) ? json_decode($cmsData->userTestimonials, true) : $cmsData->userTestimonials;
+    //$userTestimonials = is_string($cmsData->userTestimonials) ? json_decode($cmsData->userTestimonials, true) : $cmsData->userTestimonials;
 @endphp
 
-@if (is_array($userTestimonials) && count($userTestimonials) > 0)
+@if (!empty($userTestimonials) && (is_array($userTestimonials) && count($userTestimonials) > 0))
     @foreach($userTestimonials as $testimonial)
         <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
             <p class="secondary">"{{ $testimonial['comment'] }}"</p>
@@ -203,9 +203,9 @@
             <div class="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-6 mt-12">
                 @php
     // Decode the userTestimonials field if it's stored as a JSON string
-    $pricingPlans = is_string($cmsData->pricingPlans) ? json_decode($cmsData->pricingPlans, true) : $cmsData->pricingPlans;
+    //$pricingPlans = is_string($cmsData->pricingPlans) ? json_decode($cmsData->pricingPlans, true) : $cmsData->pricingPlans;
 @endphp
-@if (is_array($pricingPlans) && count($pricingPlans) > 0)
+@if (!empty($pricingPlans) && (is_array($pricingPlans) && count($pricingPlans) > 0))
                @foreach($pricingPlans as $plan)
     <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
         <h3 class="text-xl font-bold mb-2 dark">{{ $plan['name'] }}</h3>
@@ -266,9 +266,9 @@
  <div class="flex justify-center space-x-4 mt-8">
     @php
     // Decode the userTestimonials field if it's stored as a JSON string
-    $socials = is_string($cmsData->socials) ? json_decode($cmsData->socials, true) : $cmsData->socials;
+    //$socials = is_string($cmsData->socials) ? json_decode($cmsData->socials, true) : $cmsData->socials;
 @endphp
-@if (is_array($socials) && count($socials) > 0)
+@if (!empty($socials) && (is_array($socials) && count($socials) > 0))
                @foreach($socials as $social)
         <a href="{{ $social['url'] }}" class=" hover:text-blue-700">
             <i class="{{ $social['icon'] ?? 'fas fa-question-circle' }} fa-2x"></i>
