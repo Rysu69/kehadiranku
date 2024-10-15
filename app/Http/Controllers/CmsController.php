@@ -230,6 +230,42 @@ public function updateVideos(Request $request)
     return redirect()->route('cms.videos')->with('success', 'Video section updated successfully.');
 }
 
+public function editPricing()
+{
+    $cmsData = CmsData::firstOrCreate();
+
+    // Decode the JSON data into an array (if it's not empty)
+    $cmsData->pricingPlans = !empty($cmsData->pricingPlans) ? json_decode($cmsData->pricingPlans, true) : [];
+
+    return view('cms.pricing', compact('cmsData'));
+}
+
+
+public function updatePricing(Request $request)
+    {
+        // Validation
+        $validated = $request->validate([
+            'pricing_section_title' => 'nullable|string|max:255',
+            'pricing_section_description' => 'nullable|string|max:500',
+            'pricingPlans' => 'nullable|array',
+            'pricingPlans.*.name' => 'nullable|string|max:255',
+            'pricingPlans.*.price' => 'nullable|string|max:255',
+            'pricingPlans.*.description' => 'nullable|string|max:500',
+        ]);
+
+        // Find the CMS data (assumes there's only one record)
+        $cmsData = CmsData::first();
+
+        // Update the CMS data fields
+        $cmsData->pricing_section_title = $validated['pricing_section_title'];
+        $cmsData->pricing_section_description = $validated['pricing_section_description'];
+        $cmsData->pricingPlans = json_encode($validated['pricingPlans']);
+
+        // Save the updated CMS data
+        $cmsData->save();
+
+        return redirect()->back()->with('success', 'Pricing Section Updated Successfully');
+    }
 
     // Edit and Update Methods for About Us
     public function editAboutUs()

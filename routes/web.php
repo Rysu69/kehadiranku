@@ -38,6 +38,9 @@ Route::put('/contact', [CmsController::class, 'updateContactSection'])->name('cm
     Route::get('/videos', [CMSController::class, 'editvideos'])->name('cms.videos');
     Route::post('/videos/update', [CMSController::class, 'updatevideos'])->name('cms.videos.update');
 
+    Route::get('/pricing', [CMSController::class, 'editpricing'])->name('cms.pricing');
+    Route::post('pricing/update', [CmsController::class, 'updatePricing'])->name('cms.pricing.update');
+
     Route::get('/testimonials', [CMSController::class, 'editTestimonials'])->name('cms.testimonials');
     Route::post('/testimonials/update', [CMSController::class, 'updateTestimonials'])->name('cms.testimonials.update');
 
