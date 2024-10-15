@@ -43,8 +43,9 @@
 <section id="home" class="relative w-full h-screen overflow-hidden">
     <div class="carousel-wrapper w-full h-full flex transition-transform duration-500" id="carousel">
         <!-- Carousel items -->
-       @php
-    $cmsData = \App\Models\CmsData::first();
+@php
+    // Decode the features field if it's stored as a JSON string
+    $carousel_image = is_string($cmsData->carousel_image) ? json_decode($cmsData->carousel_image, true) : $cmsData->carousel_image;
 @endphp
 
 @if ($cmsData && is_array($cmsData->carousel_image) && count($cmsData->carousel_image) > 0)
@@ -111,22 +112,23 @@
             <p class="text-xl font-bold light">{{ $cmsData->features_description ?? 'Apa saja yang Anda dapat saat menggunakan layanan Kehadiranku – Presensi Online Siswa' }}</p>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
 
-@if ($cmsData && is_array($cmsData->features) && count($cmsData->features) > 0)
-              @foreach($cmsData->features as $feature)
-    <div class="p-6 bg-white dark rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-<i class="fas fa-bolt text-blue-600 text-4xl"></i>
-    <h3 class="text-xl dark font-semibold mt-4">{{ $feature['name'] }}</h3>
-        <p class="mt-2 dark">{{ $feature['description'] }}</p>
-    </div>
-    @endforeach
+@php
+    // Decode the features field if it's stored as a JSON string
+    $features = is_string($cmsData->features) ? json_decode($cmsData->features, true) : $cmsData->features;
+@endphp
 
-    @else
- <div class="p-6 bg-white dark rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-<i class="fas fa-bolt text-blue-600 text-4xl"></i>
-    <h3 class="text-xl dark font-semibold mt-4">Features not found</h3>
-        <p class="mt-2 dark">Description not found</p>
-    </div>
+@if (is_array($features) && count($features) > 0)
+    @foreach($features as $feature)
+        <div class="p-6 bg-white dark rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
+            <i class="{{ $feature['icon'] }} text-blue-600 text-4xl"></i>
+            <h3 class="text-xl dark font-semibold mt-4">{{ $feature['name'] }}</h3>
+            <p class="mt-2 dark">{{ $feature['description'] }}</p>
+        </div>
+    @endforeach
+@else
+    <p>No features available.</p>
 @endif
+
 
 
             </div>
@@ -139,19 +141,22 @@
             <h2 class="text-center text-3xl font-extrabold mb-4 primary">{{ $cmsData->video_section_title ?? 'Video Pengenalan' }}</h2>
             <p class="text-center text-xl font-bold mb-20 primary">{{ $cmsData->video_section_description ?? 'Kenali beberapa fitur unggulan dari 3 aplikasi yang kami sediakan untuk sekolah' }}</p>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-@if ($cmsData && is_array($cmsData->videos) && count($cmsData->videos) > 0)
-               @foreach($cmsData->videos as $video)
-    <div class="rounded-lg overflow-hidden secondary">
-        <p class="text-center text-lg font-semibold mb-2 primary">{{ $video['title'] }}</p>
-        <iframe class="w-full h-64 rounded-t-lg primary" src="{{ $video['url'] }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-@endforeach
+@php
+    // Decode the videos field if it's stored as a JSON string
+    $videos = is_string($cmsData->videos) ? json_decode($cmsData->videos, true) : $cmsData->videos;
+@endphp
+
+@if (is_array($videos) && count($videos) > 0)
+    @foreach($videos as $video)
+        <div class="rounded-lg overflow-hidden secondary">
+            <p class="text-center text-lg font-semibold mb-2 primary">{{ $video['title'] }}</p>
+            <iframe class="w-full h-64 rounded-t-lg primary" src="{{ $video['url'] }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    @endforeach
 @else
-<div class="rounded-lg overflow-hidden secondary">
-        <p class="text-center text-lg font-semibold mb-2 primary">not found</p>
-        <iframe class="w-full h-64 rounded-t-lg primary" src="https://www.youtube.com/embed/" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
+    <p>No videos available.</p>
 @endif
+
 
 
             </div>
@@ -164,19 +169,23 @@
             <h2 class="text-center text-5xl font-extrabold mb-4 primary">{{ $cmsData->testimonials_section_title ?? 'User Testimonials' }}</h2>
                     <p class="text-center text-xl font-bold primary">{{ $cmsData->testimonials_section_description ?? 'Layanan Presensi Online Siswa telah digunakan oleh berbagai sekolah di seluruh indonesia' }}</p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-@if ($cmsData && is_array($cmsData->userTestimonials) && count($cmsData->userTestimonials) > 0)
-                @foreach($cmsData->userTestimonials as $testimonial)
-    <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-        <p class="secondary">"{{ $testimonial['comment'] }}"</p>
-        <p class="text-right font-semibold mt-4 primary">- {{ $testimonial['name'] }}, {{ $testimonial['school'] }}</p>
-    </div>
-@endforeach
+@php
+    // Decode the userTestimonials field if it's stored as a JSON string
+    $userTestimonials = is_string($cmsData->userTestimonials) ? json_decode($cmsData->userTestimonials, true) : $cmsData->userTestimonials;
+@endphp
+
+@if (is_array($userTestimonials) && count($userTestimonials) > 0)
+    @foreach($userTestimonials as $testimonial)
+        <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
+            <p class="secondary">"{{ $testimonial['comment'] }}"</p>
+            <p class="text-right font-semibold mt-4 primary">- {{ $testimonial['name'] }}, {{ $testimonial['school'] }}</p>
+        </div>
+    @endforeach
 @else
-<div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-        <p class="secondary">"no comment"</p>
-        <p class="text-right font-semibold mt-4 primary">- not found</p>
-    </div>
+    <p>No testimonials available.</p>
 @endif
+
+
 
             </div>
         </div>
