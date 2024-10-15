@@ -27,6 +27,7 @@
         <div id="features-list" class="space-y-4">
             @foreach($cmsData->features as $index => $feature)
                 <div class="flex space-x-4 items-center">
+                    <input type="text" name="features[{{ $index }}][icon]" value="{{ old("features.$index.icon", $feature['icon']) }}" placeholder="Font Awesome Icon (e.g., fas fa-bolt)" class="form-input mt-1 block w-full border border-gray-300 p-2 rounded-lg">
                     <input type="text" name="features[{{ $index }}][name]" value="{{ old("features.$index.name", $feature['name']) }}" placeholder="Feature Name" class="form-input mt-1 block w-full border border-gray-300 p-2 rounded-lg">
                     <input type="text" name="features[{{ $index }}][description]" value="{{ old("features.$index.description", $feature['description']) }}" placeholder="Feature Description" class="form-input mt-1 block w-full border border-gray-300 p-2 rounded-lg">
                     <button type="button" class="remove-item bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">Remove</button>
@@ -44,9 +45,10 @@
 
     <script>
         document.getElementById('add-feature').addEventListener('click', function() {
-            let index = document.querySelectorAll('#features-list input[name^="features"]').length / 2;
+            let index = document.querySelectorAll('#features-list input[name^="features"]').length / 3; // Adjust to 3 fields now
             let newFeature = `
                 <div class="flex space-x-4 items-center">
+                    <input type="text" name="features[${index}][icon]" placeholder="Font Awesome Icon (e.g., fas fa-bolt)" class="form-input mt-1 block w-full border border-gray-300 p-2 rounded-lg">
                     <input type="text" name="features[${index}][name]" placeholder="Feature Name" class="form-input mt-1 block w-full border border-gray-300 p-2 rounded-lg">
                     <input type="text" name="features[${index}][description]" placeholder="Feature Description" class="form-input mt-1 block w-full border border-gray-300 p-2 rounded-lg">
                     <button type="button" class="remove-item bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">Remove</button>
