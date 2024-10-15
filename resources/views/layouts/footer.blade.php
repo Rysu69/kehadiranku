@@ -26,28 +26,24 @@
                 <h4 class="text-lg font-semibold text-white mb-4">Follow Us</h4>
                 <div class="flex space-x-4">
 
-@php
-    // Decode the userTestimonials field if it's stored as a JSON string
-    //$socials = is_string($cmsData->socials) ? json_decode($cmsData->socials, true) : $cmsData->socials;
-@endphp
-@if (!empty($socials) && (is_array($socials) && count($socials) > 0))
-               @foreach($socials as $social)
- <a href="{{ $social['url'] }}" class=" hover:text-blue-700">
-            <i class="{{ $social['icon'] ?? 'fas fa-question-circle' }}"></i>
-        </a>
-@endforeach
-@else
-        <a href="#" class=" hover:text-blue-700">
-            <i class="{{ $social['icon'] ?? 'fas fa-question-circle' }} fa-2x"></i>
-        </a>
-@endif
+                    @if (!empty($socials) && (is_array($socials) && count($socials) > 0))
+                                @foreach($socials as $social)
+                    <a href="{{ $social['url'] }}" class=" hover:text-blue-700">
+                                <i class="{{ $social['icon'] ?? 'fas fa-question-circle' }}"></i>
+                            </a>
+                    @endforeach
+                    @else
+                            <a href="#" class=" hover:text-blue-700">
+                                <i class="{{ $social['icon'] ?? 'fas fa-question-circle' }} fa-2x"></i>
+                            </a>
+                    @endif
+
                 </div>
             </div>
-        </div>
-</div>
-        <!-- Bottom section -->
-        <div class="border-t border-gray-700 -mb-10 mt-10 text-center">
-            <p>&copy; {{ date('Y') }} Kehadiranku. All rights reserved.</p>
+            <!-- Bottom section -->
+            <div class="border-t border-gray-700 -mb-10 mt-10 text-center">
+                <p>&copy; {{ date('Y') }} Kehadiranku. All rights reserved.</p>
+            </div>
         </div>
     </div>
 </footer>

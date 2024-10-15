@@ -1,4 +1,4 @@
-    <x-app-layout>
+<x-app-layout>
         <style>
 
 :root {
@@ -43,22 +43,18 @@
 <section id="home" class="relative w-full h-screen overflow-hidden">
     <div class="carousel-wrapper w-full h-full flex transition-transform duration-500" id="carousel">
         <!-- Carousel items -->
-@php
-    // Decode the features field if it's stored as a JSON string
-    //$carousel_image = is_string($cmsData->carousel_image) ? json_decode($cmsData->carousel_image, true) : $cmsData->carousel_image;
-@endphp
 
-@if (!empty($cmsData->carousel_image) && ($cmsData && is_array($cmsData->carousel_image) && count($cmsData->carousel_image) > 0))
-    @foreach ($cmsData->carousel_image as $carouselImage)
-        <div class="carousel-item w-full h-full flex-shrink-0 relative">
-            <img class="w-full h-full object-cover" src="{{ asset('storage/' . $carouselImage) }}" alt="Carousel Image">
-        </div>
-    @endforeach
-@else
-    <div class="carousel-item w-full h-full flex-shrink-0 relative">
-        <img class="w-full h-full object-cover" src="https://via.placeholder.com/1200x800?text=No+Image" alt="No Image Available">
-    </div>
-@endif
+        @if (!empty($cmsData->carousel_image) && ($cmsData && is_array($cmsData->carousel_image) && count($cmsData->carousel_image) > 0))
+            @foreach ($cmsData->carousel_image as $carouselImage)
+                <div class="carousel-item w-full h-full flex-shrink-0 relative">
+                    <img class="w-full h-full object-cover" src="{{ asset('storage/' . $carouselImage) }}" alt="Carousel Image">
+                </div>
+            @endforeach
+        @else
+            <div class="carousel-item w-full h-full flex-shrink-0 relative">
+                <img class="w-full h-full object-cover" src="https://via.placeholder.com/1200x800?text=No+Image" alt="No Image Available">
+            </div>
+        @endif
 
     </div>
 </section>
@@ -112,24 +108,17 @@
             <p class="text-xl font-bold light">{{ $cmsData->features_description ?? 'Apa saja yang Anda dapat saat menggunakan layanan Kehadiranku – Presensi Online Siswa' }}</p>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
 
-@php
-    // Decode the features field if it's stored as a JSON string
-    //$features = is_string($cmsData->features) ? json_decode($cmsData->features, true) : $cmsData->features;
-@endphp
-
-@if (!empty($features) && (is_array($features) && count($features) > 0))
-    @foreach($features as $feature)
-        <div class="p-6 bg-white dark rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-            <i class="{{ $feature['icon'] }} text-blue-600 text-4xl"></i>
-            <h3 class="text-xl dark font-semibold mt-4">{{ $feature['name'] }}</h3>
-            <p class="mt-2 dark">{{ $feature['description'] }}</p>
-        </div>
-    @endforeach
-@else
-    <p>No features available.</p>
-@endif
-
-
+                @if (!empty($features) && (is_array($features) && count($features) > 0))
+                    @foreach($features as $feature)
+                        <div class="p-6 bg-white dark rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
+                            <i class="{{ $feature['icon'] }} text-blue-600 text-4xl"></i>
+                            <h3 class="text-xl dark font-semibold mt-4">{{ $feature['name'] }}</h3>
+                            <p class="mt-2 dark">{{ $feature['description'] }}</p>
+                        </div>
+                    @endforeach
+                @else
+                    <p>No features available.</p>
+                @endif
 
             </div>
         </div>
@@ -141,51 +130,39 @@
             <h2 class="text-center text-3xl font-extrabold mb-4 primary">{{ $cmsData->video_section_title ?? 'Video Pengenalan' }}</h2>
             <p class="text-center text-xl font-bold mb-20 primary">{{ $cmsData->video_section_description ?? 'Kenali beberapa fitur unggulan dari 3 aplikasi yang kami sediakan untuk sekolah' }}</p>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-@php
-    // Decode the videos field if it's stored as a JSON string
-    //$videos = is_string($cmsData->videos) ? json_decode($cmsData->videos, true) : $cmsData->videos;
-@endphp
 
-@if (!empty($videos) && (is_array($videos) && count($videos) > 0))
-    @foreach($videos as $video)
-        <div class="rounded-lg overflow-hidden secondary">
-            <p class="text-center text-lg font-semibold mb-2 primary">{{ $video['title'] }}</p>
-            <iframe class="w-full h-64 rounded-t-lg primary" src="{{ $video['url'] }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-    @endforeach
-@else
-    <p>No videos available.</p>
-@endif
-
-
+                @if (!empty($videos) && (is_array($videos) && count($videos) > 0))
+                    @foreach($videos as $video)
+                        <div class="rounded-lg overflow-hidden secondary">
+                            <p class="text-center text-lg font-semibold mb-2 primary">{{ $video['title'] }}</p>
+                            <iframe class="w-full h-64 rounded-t-lg primary" src="{{ $video['url'] }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    @endforeach
+                @else
+                    <p>No videos available.</p>
+                @endif
 
             </div>
         </div>
     </section>
 
     <!-- User Testimonials Section -->
-                <section id="pengguna" class="mt-12 py-32 px-6 lg:px-16">
+    <section id="pengguna" class="mt-12 py-32 px-6 lg:px-16">
         <div class="container mx-auto">
             <h2 class="text-center text-5xl font-extrabold mb-4 primary">{{ $cmsData->testimonials_section_title ?? 'User Testimonials' }}</h2>
                     <p class="text-center text-xl font-bold primary">{{ $cmsData->testimonials_section_description ?? 'Layanan Presensi Online Siswa telah digunakan oleh berbagai sekolah di seluruh indonesia' }}</p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-@php
-    // Decode the userTestimonials field if it's stored as a JSON string
-    //$userTestimonials = is_string($cmsData->userTestimonials) ? json_decode($cmsData->userTestimonials, true) : $cmsData->userTestimonials;
-@endphp
 
-@if (!empty($userTestimonials) && (is_array($userTestimonials) && count($userTestimonials) > 0))
-    @foreach($userTestimonials as $testimonial)
-        <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-            <p class="secondary">"{{ $testimonial['comment'] }}"</p>
-            <p class="text-right font-semibold mt-4 primary">- {{ $testimonial['name'] }}, {{ $testimonial['school'] }}</p>
-        </div>
-    @endforeach
-@else
-    <p>No testimonials available.</p>
-@endif
-
-
+                @if (!empty($userTestimonials) && (is_array($userTestimonials) && count($userTestimonials) > 0))
+                    @foreach($userTestimonials as $testimonial)
+                        <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
+                            <p class="secondary">"{{ $testimonial['comment'] }}"</p>
+                            <p class="text-right font-semibold mt-4 primary">- {{ $testimonial['name'] }}, {{ $testimonial['school'] }}</p>
+                        </div>
+                    @endforeach
+                @else
+                    <p>No testimonials available.</p>
+                @endif
 
             </div>
         </div>
@@ -201,29 +178,25 @@
 
 
             <div class="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-6 mt-12">
-                @php
-    // Decode the userTestimonials field if it's stored as a JSON string
-    //$pricingPlans = is_string($cmsData->pricingPlans) ? json_decode($cmsData->pricingPlans, true) : $cmsData->pricingPlans;
-@endphp
-@if (!empty($pricingPlans) && (is_array($pricingPlans) && count($pricingPlans) > 0))
-               @foreach($pricingPlans as $plan)
-    <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
-        <h3 class="text-xl font-bold mb-2 dark">{{ $plan['name'] }}</h3>
-        <p class="mt-2 text-2xl font-extrabold dark">Rp {{ $plan['price'] }}</p>
-        <p class="secondary mt-4">{{ $plan['description'] }}</p>
+                @if (!empty($pricingPlans) && (is_array($pricingPlans) && count($pricingPlans) > 0))
+                            @foreach($pricingPlans as $plan)
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold mb-2 dark">{{ $plan['name'] }}</h3>
+                        <p class="mt-2 text-2xl font-extrabold dark">Rp {{ $plan['price'] }}</p>
+                        <p class="secondary mt-4">{{ $plan['description'] }}</p>
 
-            <a href="#daftar" class="mt-4 inline-block bg-blue-600 light py-2 px-4 rounded-2xl">Daftar</a>
-    </div>
-@endforeach
-@else
-<div class="bg-gray-50 p-8 rounded-lg shadow-lg">
-        <h3 class="text-xl font-bold mb-2 dark">null</h3>
-        <p class="mt-2 text-2xl font-extrabold dark">null</p>
-        <p class="secondary mt-4">null</p>
+                            <a href="#daftar" class="mt-4 inline-block bg-blue-600 light py-2 px-4 rounded-2xl">Daftar</a>
+                    </div>
+                @endforeach
+                @else
+                <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold mb-2 dark">null</h3>
+                        <p class="mt-2 text-2xl font-extrabold dark">null</p>
+                        <p class="secondary mt-4">null</p>
 
-            <a href="#daftar" class="mt-4 inline-block bg-blue-600 light py-2 px-4 rounded-2xl">Daftar</a>
-    </div>
-@endif
+                            <a href="#daftar" class="mt-4 inline-block bg-blue-600 light py-2 px-4 rounded-2xl">Daftar</a>
+                    </div>
+                @endif
 
             </div>
         </div>
@@ -262,25 +235,20 @@
             <p class="text-gray-600">{{ $cmsData->alamat_2 ?? '-'}}</p>
         </div>
 
-<!-- Social Media Links -->
- <div class="flex justify-center space-x-4 mt-8">
-    @php
-    // Decode the userTestimonials field if it's stored as a JSON string
-    //$socials = is_string($cmsData->socials) ? json_decode($cmsData->socials, true) : $cmsData->socials;
-@endphp
-@if (!empty($socials) && (is_array($socials) && count($socials) > 0))
-               @foreach($socials as $social)
-        <a href="{{ $social['url'] }}" class=" hover:text-blue-700">
-            <i class="{{ $social['icon'] ?? 'fas fa-question-circle' }} fa-2x"></i>
-        </a>
-@endforeach
-@else
-        <a href="#" class=" hover:text-blue-700">
-            <i class="{{ $social['icon'] ?? 'fas fa-question-circle' }} fa-2x"></i>
-        </a>
-@endif
-</div>
-
+        <!-- Social Media Links -->
+        <div class="flex justify-center space-x-4 mt-8">
+            @if (!empty($socials) && (is_array($socials) && count($socials) > 0))
+                        @foreach($socials as $social)
+                    <a href="{{ $social['url'] }}" class=" hover:text-blue-700">
+                        <i class="{{ $social['icon'] ?? 'fas fa-question-circle' }} fa-2x"></i>
+                    </a>
+            @endforeach
+            @else
+                    <a href="#" class=" hover:text-blue-700">
+                        <i class="{{ $social['icon'] ?? 'fas fa-question-circle' }} fa-2x"></i>
+                    </a>
+            @endif
+        </div>
 
     </div>
 </section>
