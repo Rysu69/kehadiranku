@@ -43,17 +43,22 @@
 <section id="home" class="relative w-full h-screen overflow-hidden">
     <div class="carousel-wrapper w-full h-full flex transition-transform duration-500" id="carousel">
         <!-- Carousel items -->
-        @if(is_array($cmsData->carousel_image) && count($cmsData->carousel_image) > 0)
-  @foreach ($cmsData->carousel_image as $carouselImage)
+       @php
+    $cmsData = \App\Models\CmsData::first();
+@endphp
+
+@if ($cmsData && is_array($cmsData->carousel_image) && count($cmsData->carousel_image) > 0)
+    @foreach ($cmsData->carousel_image as $carouselImage)
         <div class="carousel-item w-full h-full flex-shrink-0 relative">
             <img class="w-full h-full object-cover" src="{{ asset('storage/' . $carouselImage) }}" alt="Carousel Image">
         </div>
     @endforeach
-        @else
-            <div class="carousel-item w-full h-full flex-shrink-0 relative">
-                <img class="w-full h-full object-cover" src="https://via.placeholder.com/1200x800?text=No+Image" alt="No Image Available">
-            </div>
-        @endif
+@else
+    <div class="carousel-item w-full h-full flex-shrink-0 relative">
+        <img class="w-full h-full object-cover" src="https://via.placeholder.com/1200x800?text=No+Image" alt="No Image Available">
+    </div>
+@endif
+
     </div>
 </section>
 
@@ -65,13 +70,28 @@
         <h2 class="text-md font-semibold mb-4 text-center primary">{{ $cmsData->profile_title ?? 'Profile' }}</h2>
 
         <!-- YouTube iframe -->
-        <div class="mb-6 w-full overflow-hidden relative" style="padding-top: 56.25%;"> <!-- 16:9 aspect ratio -->
-    <iframe class="absolute top-0 left-0 w-full h-full rounded-lg"
-            src="{{ $cmsData->profile_image }}"
-            frameborder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-</div>
+        @php
+    $cmsData = \App\Models\CmsData::first();
+@endphp
+
+@if ($cmsData && $cmsData->profile_image)
+    <div class="mb-6 w-full overflow-hidden relative" style="padding-top: 56.25%;"> <!-- 16:9 aspect ratio -->
+        <iframe class="absolute top-0 left-0 w-full h-full rounded-lg"
+                src="{{ $cmsData->profile_image }}"
+                frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+    </div>
+@else
+    <div class="mb-6 w-full overflow-hidden relative" style="padding-top: 56.25%;">
+        <iframe class="absolute top-0 left-0 w-full h-full rounded-lg"
+                src="https://via.placeholder.com/1200x675?text=No+Profile+Image"
+                frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+    </div>
+@endif
+
 
 
         <div class="w-full flex justify-center rounded-lg p-4">
@@ -90,13 +110,23 @@
             <h2 class="text-3xl font-extrabold pb-2 light">{{ $cmsData->features_section_title ?? 'Our Features' }}</h2>
             <p class="text-xl font-bold light">{{ $cmsData->features_description ?? 'Apa saja yang Anda dapat saat menggunakan layanan Kehadiranku – Presensi Online Siswa' }}</p>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+
+@if ($cmsData && is_array($cmsData->features) && count($cmsData->features) > 0)
               @foreach($cmsData->features as $feature)
     <div class="p-6 bg-white dark rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
 <i class="fas fa-bolt text-blue-600 text-4xl"></i>
     <h3 class="text-xl dark font-semibold mt-4">{{ $feature['name'] }}</h3>
         <p class="mt-2 dark">{{ $feature['description'] }}</p>
     </div>
-@endforeach
+    @endforeach
+
+    @else
+ <div class="p-6 bg-white dark rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
+<i class="fas fa-bolt text-blue-600 text-4xl"></i>
+    <h3 class="text-xl dark font-semibold mt-4">Features not found</h3>
+        <p class="mt-2 dark">Description not found</p>
+    </div>
+@endif
 
 
             </div>
@@ -109,12 +139,22 @@
             <h2 class="text-center text-3xl font-extrabold mb-4 primary">{{ $cmsData->video_section_title ?? 'Video Pengenalan' }}</h2>
             <p class="text-center text-xl font-bold mb-20 primary">{{ $cmsData->video_section_description ?? 'Kenali beberapa fitur unggulan dari 3 aplikasi yang kami sediakan untuk sekolah' }}</p>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+@if ($cmsData && is_array($cmsData->videos) && count($cmsData->videos) > 0)
                @foreach($cmsData->videos as $video)
     <div class="rounded-lg overflow-hidden secondary">
         <p class="text-center text-lg font-semibold mb-2 primary">{{ $video['title'] }}</p>
         <iframe class="w-full h-64 rounded-t-lg primary" src="{{ $video['url'] }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 @endforeach
+@else
+    <div class="mb-6 w-full overflow-hidden relative" style="padding-top: 56.25%;">
+        <iframe class="absolute top-0 left-0 w-full h-full rounded-lg"
+                src="https://via.placeholder.com/1200x675?text=No+Profile+Image"
+                frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+    </div>
+@endif
 
 
             </div>
@@ -127,12 +167,19 @@
             <h2 class="text-center text-5xl font-extrabold mb-4 primary">{{ $cmsData->testimonials_section_title ?? 'User Testimonials' }}</h2>
                     <p class="text-center text-xl font-bold primary">{{ $cmsData->testimonials_section_description ?? 'Layanan Presensi Online Siswa telah digunakan oleh berbagai sekolah di seluruh indonesia' }}</p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+@if ($cmsData && is_array($cmsData->userTestimonials) && count($cmsData->userTestimonials) > 0)
                 @foreach($cmsData->userTestimonials as $testimonial)
     <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
         <p class="secondary">"{{ $testimonial['comment'] }}"</p>
         <p class="text-right font-semibold mt-4 primary">- {{ $testimonial['name'] }}, {{ $testimonial['school'] }}</p>
     </div>
 @endforeach
+@else
+<div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
+        <p class="secondary">"no comment"</p>
+        <p class="text-right font-semibold mt-4 primary">- not found</p>
+    </div>
+@endif
 
             </div>
         </div>
@@ -148,7 +195,7 @@
 
 
             <div class="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-6 mt-12">
-
+@if ($cmsData && is_array($cmsData->pricingPlans) && count($cmsData->pricingPlans) > 0)
                @foreach($cmsData->pricingPlans as $plan)
     <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
         <h3 class="text-xl font-bold mb-2 dark">{{ $plan['name'] }}</h3>
@@ -158,7 +205,15 @@
             <a href="#daftar" class="mt-4 inline-block bg-blue-600 light py-2 px-4 rounded-2xl">Daftar</a>
     </div>
 @endforeach
+@else
+<div class="bg-gray-50 p-8 rounded-lg shadow-lg">
+        <h3 class="text-xl font-bold mb-2 dark">null</h3>
+        <p class="mt-2 text-2xl font-extrabold dark">null</p>
+        <p class="secondary mt-4">null</p>
 
+            <a href="#daftar" class="mt-4 inline-block bg-blue-600 light py-2 px-4 rounded-2xl">Daftar</a>
+    </div>
+@endif
 
             </div>
         </div>
@@ -175,13 +230,13 @@
                <div class="flex justify-center space-x-6">
     <div class="flex space-x-2 dark">
         <p class="font-semibold">Telp:</p>
-        <p class="text-gray-600">{{ $cmsData->no_telp}}</p>
+        <p class="text-gray-600">{{ $cmsData->no_telp ?? '-'}}</p>
     </div>
 </div>
 <div class="flex justify-center space-x-6">
     <div class="flex space-x-2 dark">
         <p class="font-semibold">WA:</p>
-        <p class="text-gray-600">{{ $cmsData->no_wa}}</p>
+        <p class="text-gray-600">{{ $cmsData->no_wa ?? '-'}}</p>
     </div>
 </div>
             </div>
@@ -190,20 +245,26 @@
         <!-- Office Information -->
         <div class="mb-8 dark">
             <p class="font-bold">Technical Support Office</p>
-            <p class="text-gray-600">{{ $cmsData->alamat_1}}</p>
+            <p class="text-gray-600">{{ $cmsData->alamat_1 ?? '-'}}</p>
         </div>
         <div class="mb-8 dark">
             <p class="font-bold">Development Office</p>
-            <p class="text-gray-600">{{ $cmsData->alamat_2}}</p>
+            <p class="text-gray-600">{{ $cmsData->alamat_2 ?? '-'}}</p>
         </div>
 
 <!-- Social Media Links -->
  <div class="flex justify-center space-x-4 mt-8">
+@if ($cmsData && is_array($cmsData->socials) && count($cmsData->socials) > 0)
 @foreach($cmsData->socials as $social)
         <a href="{{ $social['url'] }}" class=" hover:text-blue-700">
             <i class="{{ $social['icon'] ?? 'fas fa-question-circle' }} fa-2x"></i>
         </a>
 @endforeach
+@else
+        <a href="#" class=" hover:text-blue-700">
+            <i class="{{ $social['icon'] ?? 'fas fa-question-circle' }} fa-2x"></i>
+        </a>
+@endif
 </div>
 
 

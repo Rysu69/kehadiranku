@@ -5,9 +5,9 @@
             <!-- Contact Information -->
             <div class="mb-8 md:mb-0">
                 <h4 class="text-lg font-semibold text-white mb-4">Contact Us</h4>
-                <p class="text-gray-400">{{ $cmsData->alamat_1}}</p>
-                <p class="text-gray-400 pt-0.5">{{ $cmsData->no_telp}}</p>
-                <p class="text-gray-400 pt-0,5">{{ $cmsData->no_wa}}</p>
+                <p class="text-gray-400">{{ $cmsData->alamat_1 ?? '-'}}</p>
+                <p class="text-gray-400 pt-0.5">{{ $cmsData->no_telp ?? '-'}}</p>
+                <p class="text-gray-400 pt-0,5">{{ $cmsData->no_wa ?? '-'}}</p>
             </div>
 
             <!-- Quick Links -->
@@ -25,11 +25,18 @@
             <div>
                 <h4 class="text-lg font-semibold text-white mb-4">Follow Us</h4>
                 <div class="flex space-x-4">
-                    @foreach($cmsData->socials as $social)
+
+@if ($cmsData && is_array($cmsData->socials) && count($cmsData->socials) > 0)
+@foreach($cmsData->socials as $social)
         <a href="{{ $social['url'] }}" class=" hover:text-blue-700">
             <i class="{{ $social['icon'] ?? 'fas fa-question-circle' }}"></i>
         </a>
 @endforeach
+@else
+        <a href="#" class=" hover:text-blue-700">
+            <i class="{{ $social['icon'] ?? 'fas fa-question-circle' }} fa-2x"></i>
+        </a>
+@endif
                 </div>
             </div>
         </div>
