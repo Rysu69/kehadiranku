@@ -16,9 +16,9 @@ class CmsDataSeeder extends Seeder
             'features_section_title' => 'Our Features',
             'features_description' => 'Apa saja yang Anda dapat saat menggunakan layanan Kehadiranku – Presensi Online Siswa',
             'features' => json_encode([
-                ['name' => 'Feature 1', 'description' => 'Description of feature 1.'],
-                ['name' => 'Feature 2', 'description' => 'Description of feature 2.'],
-                ['name' => 'Feature 2', 'description' => 'Description of feature 2.'],
+                ['icon' => 'fa-brands fa-youtube', 'name' => 'Feature 1', 'description' => 'Description of feature 1.'],
+                ['icon' => 'fa-brands fa-youtube', 'name' => 'Feature 2', 'description' => 'Description of feature 2.'],
+                ['icon' => 'fa-brands fa-youtube', 'name' => 'Feature 2', 'description' => 'Description of feature 2.'],
                 // Add more features
             ]),
 
@@ -44,8 +44,8 @@ class CmsDataSeeder extends Seeder
             'pricing_section_title' => 'Pricing Plans',
             'pricing_section_description' => 'Choose a plan that suits your needs.',
             'pricingPlans' => json_encode([
-                ['name' => 'Basic Plan', 'description' => 'Termasuk fitur dasar untuk absensi sekolah.', 'price' => 'Rp 199.000'],
-                ['name' => 'Pro Plan', 'description' => 'Termasuk fitur lanjutan untuk mengurus sekolah.', 'price' => 'Rp 499.000'],
+                ['name' => 'Basic Plan', 'description' => 'Termasuk fitur dasar untuk absensi sekolah.', 'price' => '199.000'],
+                ['name' => 'Pro Plan', 'description' => 'Termasuk fitur lanjutan untuk mengurus sekolah.', 'price' => '499.000'],
                 // Add more pricing plans
             ]),
 
