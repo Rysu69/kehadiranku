@@ -66,7 +66,7 @@
 
 
             <!-- Profile Section -->
-<section id="profile" class="mt-12 py-32 px-6 lg:px-16">
+<section id="profile" class="py-32 px-6 lg:px-16">
     <div class="flex flex-col items-center">
         <h2 class="text-md font-semibold mb-4 text-center primary">{{ $cmsData->profile_title ?? 'Profile' }}</h2>
 
@@ -147,15 +147,29 @@
 @endphp
 
 @if (is_array($videos) && count($videos) > 0)
-    @foreach($videos as $video)
-        <div class="rounded-lg overflow-hidden secondary">
-            <p class="text-center text-lg font-semibold mb-2 primary">{{ $video['title'] }}</p>
-            <iframe class="w-full h-64 rounded-t-lg primary" src="{{ $video['url'] }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-    @endforeach
+    <!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-6"> -->
+        @foreach($videos as $index => $video)
+            @if ($index === count($videos) - 1 && count($videos) % 2 === 1)
+                <!-- If it's the last video and the count is odd, center it -->
+                <div class="md:col-span-2 mx-72">
+                    <div class="rounded-lg overflow-hidden secondary">
+                        <p class="text-center text-lg font-semibold mb-2 primary">{{ $video['title'] }}</p>
+                        <iframe class="w-full h-64 rounded-t-lg primary" src="{{ $video['url'] }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            @else
+                <!-- Regular video placement in the grid -->
+                <div class="rounded-lg overflow-hidden secondary">
+                    <p class="text-center text-lg font-semibold mb-2 primary">{{ $video['title'] }}</p>
+                    <iframe class="w-full h-64 rounded-t-lg primary" src="{{ $video['url'] }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            @endif
+        @endforeach
+    </div>
 @else
     <p>No videos available.</p>
 @endif
+
 
 
 
